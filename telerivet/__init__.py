@@ -200,7 +200,7 @@ class API:
             if len(data) >= 400:
                 headers['Content-Encoding'] = 'gzip'
                 gzip_compress = zlib.compressobj(-1, zlib.DEFLATED, zlib.MAX_WBITS | 16) # add gzip header
-                gzip_data = gzip_compress.compress(data) + gzip_compress.flush()
+                gzip_data = gzip_compress.compress(data.encode('utf-8')) + gzip_compress.flush()
                 data = gzip_data
         else:
             query = self.getUrlParams(params)
